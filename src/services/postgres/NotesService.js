@@ -70,9 +70,6 @@ class NotesService{
             throw new NotFoundError('Gagal memperbarui catatan. Id tidak ditemukan');
             
         }
-
-        console.log('wibu')
-
     
     }
 
