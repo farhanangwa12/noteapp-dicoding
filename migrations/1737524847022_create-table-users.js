@@ -25,7 +25,7 @@ exports.up = (pgm) => {
             type: 'TEXT',
             notNull: true
         },
-        fullName: {
+        fullname: {
             type: 'VARCHAR(100)',  // Menambahkan panjang maksimal 100 karakter
             notNull: true           // Pastikan kolom fullName tidak kosong
         }
