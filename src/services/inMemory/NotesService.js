@@ -48,7 +48,6 @@ class NotesService {
     editNoteById(id, {title, body,tags})
     {
 
-        console.log('update note :', id, {title, body, tags}, this._notes);
         const index = this._notes.findIndex((note) => note.id === id);
         if (index === -1) {
             throw new Error('Gagal memperbarui catatan. Id tidak ditemukan');

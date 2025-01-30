@@ -25,11 +25,11 @@ const collaborations = require('./api/collaborations');
 const CollaborationsService = require('./services/postgres/CollaborationsService');
 const CollaborationsValidator = require('./validator/collaborations');
 const init = async () => {
-
-    const noteService = new NotesService();
+    const collaborationsService = new CollaborationsService();
+    const noteService = new NotesService(collaborationsService);
     const usersService = new UsersService();
     const authenticationsService = new AuthenticationsService();
-    const collaborationService = new CollaborationsService();
+   
 
     const server = Hapi.server({
         host: process.env.HOST,
@@ -40,7 +40,6 @@ const init = async () => {
             }
         }
     });
-
 
     await server.register([
         {
@@ -95,7 +94,7 @@ const init = async () => {
             plugin: collaborations,
             options: {
                 collaborationsService,
-                notesService,
+                noteService,
                 validator: CollaborationsValidator,
               },
         }

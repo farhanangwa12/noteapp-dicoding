@@ -1,7 +1,8 @@
 class CollaborationsHandler {
     constructor(collaborationService, notesService, validator) {
-        this._collaborationService = collaborationService;
+        this._collaborationsService = collaborationService;
         this._notesService = notesService;
+        
         this._validator = validator;
 
 
@@ -13,7 +14,6 @@ class CollaborationsHandler {
         this._validator.validateCollaborationPayload(request.payload);
         const { id: credentialId } = request.auth.credentials;
         const { noteId, userId } = request.payload;
-
         await this._notesService.verifyNoteOwner(noteId, credentialId);
         const collaborationId = await this._collaborationsService.addCollaboration(noteId, userId);
 
@@ -42,3 +42,5 @@ class CollaborationsHandler {
         };
     }
 } 
+
+module.exports = CollaborationsHandler;
